@@ -8,19 +8,14 @@
 
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
     <style>
-
-body {
-  margin: 0;
-  font-family: 'Pacifico', cursive;
-  background: #f9f9f9;
-}
-
-
-
+        body {
+            margin: 0;
+            font-family: 'Pacifico', cursive;
+            background: #f9f9f9;
+        }
 
         /* Ô gấp đôi chiều rộng */
         .big-card {
@@ -33,7 +28,6 @@ body {
             object-fit: cover;
             border-radius: 12px;
         }
-
 
         /* HEADER */
         header {
@@ -49,14 +43,8 @@ body {
             font-size: 35px;
             font-weight: 900;
             flex: 1;
-        
-    font-size: 35px;
-    font-weight: 900;
-    flex: 1;
-    letter-spacing: 5px; /* ← kéo giãn chữ */
-}
-
-          
+            letter-spacing: 5px;
+        }
 
         .menu-header a {
             margin-left: 25px;
@@ -100,6 +88,11 @@ body {
             margin: 12px 0 5px;
             font-size: 20px;
             font-weight: 800;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 16px;
         }
 
         /* POPUP */
@@ -198,11 +191,73 @@ body {
             color: #6f14ac;
             font-weight: bold;
         }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 1024px) {
+            .big-card {
+                grid-column: span 1 !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px 20px;
+            }
+
+            .logo {
+                font-size: 24px;
+                letter-spacing: 2px;
+                margin-bottom: 10px;
+            }
+
+            .menu-header a {
+                margin-left: 0;
+                margin-right: 15px;
+                font-size: 18px;
+            }
+
+            .products {
+                padding: 20px;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .popup-box {
+                width: 90%;
+                padding: 15px;
+            }
+
+            .popup-box select,
+            .popup-box button,
+            .popup-box input {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .card img {
+                height: 200px;
+            }
+
+            .card h3 {
+                font-size: 16px;
+            }
+
+            .card p {
+                font-size: 14px;
+            }
+
+            .logo {
+                font-size: 20px;
+                letter-spacing: 1px;
+            }
+        }
     </style>
 </head>
 
 <body>
-
     <!-- LOGIN POPUP -->
     <div id="login-popup" class="popup">
         <div class="popup-box">
@@ -217,7 +272,7 @@ body {
 
     <!-- HEADER -->
     <header>
-        <div class="logo">CUSTOM  MANG CÁ TÍNH RIÊNG</div>
+        <div class="logo">CUSTOM MANG CÁ TÍNH RIÊNG</div>
         <div class="menu-header">
             <a onclick="openCart()">Giỏ hàng (<span id="cart-count">0</span>)</a>
             <a onclick="openLogin()">Đăng nhập</a>
@@ -226,7 +281,6 @@ body {
 
     <!-- PRODUCT LIST -->
     <section class="products">
-
         <div class="card" onclick="window.location.href='tui-vai.html'">
             <img src="https://i.pinimg.com/736x/12/ae/e6/12aee62cf3c6dd73348ad3e42cf9fbbe.jpg">
             <h3>TÚI VẢI</h3>
@@ -280,12 +334,10 @@ body {
             <h3>MẪU THIẾT KẾ SẴN</h3>
             <p>Thiết kế sẵn</p>
         </div>
-
     </section>
 
     <!-- SLIDER -->
     <footer>Xu Hướng Mới Nhất</footer>
-
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             <div class="swiper-slide"><img src="https://i.pinimg.com/736x/f0/0b/ab/f00bab4f43457218cebe47a470bfbb9d.jpg"></div>
@@ -294,15 +346,13 @@ body {
             <div class="swiper-slide"><img src="https://i.pinimg.com/1200x/e3/ee/d4/e3eed4ca9efe1fff62122741cdf16a42.jpg"></div>
             <div class="swiper-slide"><img src="https://img.fantaskycdn.com/c564c9a952e842bea3a352ff83c79b9b_2056x.jpeg"></div>
             <div class="swiper-slide"><img src="https://i.pinimg.com/1200x/07/32/d1/0732d102aafa49da08f8d7337597a62e.jpg"></div>
-        
             <div class="swiper-slide"><img src="https://i.pinimg.com/736x/b4/99/6d/b4996dc36d1b5be2f4143e75f6b6f348.jpg"></div>
-  <div class="swiper-slide"><img src="https://i.pinimg.com/736x/6b/b8/a5/6bb8a5b9a455492fa855f697e109c9e2.jpg"></div>
-  <div class="swiper-slide"><img src="https://i.pinimg.com/1200x/6d/2d/b6/6d2db6fa4ef5247e611aec029a9cd9d1.jpg"></div>
-  <div class="swiper-slide"><img src="https://i.pinimg.com/736x/6a/e4/02/6ae40200367012d54f0d71f8fc1da77a.jpg"></div>
-  <div class="swiper-slide"><img src="https://i.pinimg.com/1200x/46/09/d9/4609d9e4a807a8d7af9aa9e87d098d08.jpg"></div>
-  <div class="swiper-slide"><img src="https://img.staticdj.com/0fc20bb2e86adc37539b07297c16e9c9_2056x.jpeg"></div>
-</div>
-
+            <div class="swiper-slide"><img src="https://i.pinimg.com/736x/6b/b8/a5/6bb8a5b9a455492fa855f697e109c9e2.jpg"></div>
+            <div class="swiper-slide"><img src="https://i.pinimg.com/1200x/6d/2d/b6/6d2db6fa4ef5247e611aec029a9cd9d1.jpg"></div>
+            <div class="swiper-slide"><img src="https://i.pinimg.com/736x/6a/e4/02/6ae40200367012d54f0d71f8fc1da77a.jpg"></div>
+            <div class="swiper-slide"><img src="https://i.pinimg.com/1200x/46/09/d9/4609d9e4a807a8d7af9aa9e87d098d08.jpg"></div>
+            <div class="swiper-slide"><img src="https://img.staticdj.com/0fc20bb2e86adc37539b07297c16e9c9_2056x.jpeg"></div>
+        </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
     </div>
@@ -419,7 +469,7 @@ body {
                 return;
             }
 
-            let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
             alert(
                 `Thanh toán thành công!\nTổng số sản phẩm: ${cart.reduce((s, i) => s + i.quantity, 0)}\nTổng tiền: ${total} VNĐ`
@@ -452,6 +502,7 @@ body {
             document.getElementById("product-popup").style.display = "none";
         }
 
+        // Đóng popup khi click ngoài
         window.onclick = function (e) {
             if (e.target.classList.contains("popup")) e.target.style.display = "none";
         };
@@ -465,10 +516,24 @@ body {
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                480: {
+                    slidesPerView: 1,
+                    slidesPerGroup: 1,
+                },
+                768: {
+                    slidesPerView: 3,
+                    slidesPerGroup: 3,
+                },
+                1024: {
+                    slidesPerView: 6,
+                    slidesPerGroup: 6,
+                }
             }
         });
     </script>
 
 </body>
-
 </html>
+
