@@ -1,0 +1,317 @@
+<html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tùy chỉnh áo</title>
+    <style>
+   
+      #shirtText {
+    position: absolute;
+    top: 45%;          /* ↑ nâng chữ lên trên */
+    left: 70%;         /* → đẩy chữ sang phải */
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+    pointer-events: none;
+}
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eaeaea;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            display: flex;
+            width: 900px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .image-container {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* cần để icon overlay hoạt động */
+}
+
+        .image-container img {
+            width: 90%;
+            border-radius: 10px;
+        }
+        .customization-container {
+            flex: 1;
+            padding: 20px;
+        }
+        .color-option {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 5px;
+        }
+        .color-option.selected {
+            border: 2px solid #ff5733;
+        }
+        .size-option {
+            display: inline-block;
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .size-option.selected {
+            background-color: #f0f0f0;
+        }
+        .icon-option {
+            display: inline-block;
+            width: 25px;
+            height: 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .icon-option img {
+            width: 100%;
+            height: auto;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button, .add-to-cart {
+            background-color: #a72828;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 48%;
+            margin: 5px 1%;
+        }
+        button:hover, .add-to-cart:hover {
+            background-color: #218838;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+   <div class="image-container">
+    <img id="productImage" src="https://i.pinimg.com/1200x/c0/47/3a/c0473aaa8be8abac82ff0500b3841962.jpg" alt="Áo tùy chỉnh">
+    
+    <!-- Icon overlay phía ngực trái -->
+     <div id="shirtText"></div>
+
+<img id="iconOverlay" src="" alt="Icon" style="
+    position:absolute;
+    top:40%;
+    left:20%;
+    width:20x;
+    height:20px;
+    object-fit: contain;
+    display:none;
+">
+
+
+
+</div>
+
+    <div class="customization-container">
+        <h2>Tùy chỉnh áo</h2> 
+        <h4>Màu sắc</h4>
+        <div id="colors">
+            <div class="color-option" style="background-color: #9B1B30;" data-img="https://bflplaygroundstore.blob.core.windows.net/files/a07e1b83-f566-43db-baa0-5d510a43d9f7/generations/37230142-c52a-4613-b070-75e5fe9be03f/preview.webp?sv=2025-07-05&se=2025-12-14T15%3A54%3A27Z&sr=b&sp=r&sig=3Fr3AyPPZhr8Rx6mpTevxzVmlMYU2fH33SBNsi1fP4w%3D" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #E74C3C;" data-img="https://bflplaygroundstore.blob.core.windows.net/files/a07e1b83-f566-43db-baa0-5d510a43d9f7/generations/f8514512-6827-4bb9-b7bb-e435e50faf9b/preview.webp?sv=2025-07-05&se=2025-12-14T15%3A55%3A24Z&sr=b&sp=r&sig=NN77VXjZLSD2bAPNrr%2F9hclMJHRIEYqxOtp79qL2z7M%3D" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #FFFFB5;" data-img="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/594220936_1543620893450373_2703318918984909210_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Fb7R5mK0k8MQ7kNvwGi4sBh&_nc_oc=AdmrUhqa88zpGH2TT4-q__yqInPMQRDc6wjwKZJ7Usa3dchYxDKM0ZyUyLY0JLk6swM&_nc_zt=23&_nc_ht=scontent.fhan18-1.fna&_nc_gid=gi7E7v470lRgaxxji9PYRA&oh=00_AfnvO25LLWrnDxlFzajP397pw07noYKNtrPVI98_VhYdzw&oe=693B83B4" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #000435;" data-img="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/594549943_1543620820117047_1646810944699431763_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=oU3nKnpCv8QQ7kNvwGgqeUx&_nc_oc=Adn88H6d0FCuGvzOyCKvirvLnfS8mD3edeqxUW752pNk9aBCL3XZBmh5jMLc8bZTiCg&_nc_zt=23&_nc_ht=scontent.fhan18-1.fna&_nc_gid=j6ILsGHrZN1mu2GyVBVMdA&oh=00_AfkXS5eHG9hnn31VAAamO3sDH5mZsc95sXgn0EGMDNeH2g&oe=693B9F3A" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #CBAACB;" data-img="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/593586752_1543620880117041_824719574064936284_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=MZ_ojKV2yPwQ7kNvwHqmKYB&_nc_oc=Adl9_Z02ipm53IHggCuExsgbHlMNN_v2mh1aSzuXDjQVsAPU0xgV8i9PYfKUm2T0DPc&_nc_zt=23&_nc_ht=scontent.fhan18-1.fna&_nc_gid=x5bxJy6LICXkmIhBrhtMSA&oh=00_AfnRnLOLpVGWkgvZTxKGQYj9sQYEeFcKyHGFy4YE7bVRPQ&oe=693BA0DE" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #F7B7A3;" data-img="https://bflplaygroundstore.blob.core.windows.net/files/a07e1b83-f566-43db-baa0-5d510a43d9f7/generations/91dc4fca-0696-44f2-bdbe-7af7acd0d2e9/preview.webp?sv=2025-07-05&se=2025-12-14T15%3A57%3A41Z&sr=b&sp=r&sig=MYSBuYUcXapd2%2BdKX05k9RHgDvXBL6CB39J4yXnCkEo%3D" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #D9FFDF" data-img="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/595290105_1543620816783714_6882681795484172515_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ihfVTrce1aIQ7kNvwHiMlBT&_nc_oc=AdmINgI3Pn_JHg_XhBNLA1ZWq9hSXcmHUz3-K3Vs4gGoHSDGQqbf03ZFA3sm9Qmh_AU&_nc_zt=23&_nc_ht=scontent.fhan18-1.fna&_nc_gid=wwyy_luJupp3_9UuolO_1Q&oh=00_Afnm6P1gUjrjQ0JeWBBxOgYJrKhNFITvw-EF_qWwMKDbmA&oe=693B803E" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #D4F0F0;" data-img="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/595498391_1543630606782735_7841788043799760321_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=6gCBNuwhfcAQ7kNvwG6xI_h&_nc_oc=AdmcXjNmiET8NpzYBxMi1_a2wjrRAVmpDIkl6PvPs7UZyaVABZGDQzobzW1QSMqrJ2Q&_nc_zt=23&_nc_ht=scontent.fhan18-1.fna&_nc_gid=Wjc0YtanIomW-L-MlSCPiw&oh=00_AflvtQbDYNOnbdrHZ1NL-7_3YQiTFolf-0Bi-fthW27X_Q&oe=693BAAEB" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #A29BFE;" data-img="https://bflplaygroundstore.blob.core.windows.net/files/a07e1b83-f566-43db-baa0-5d510a43d9f7/generations/d175e312-dd5f-4d6d-8e66-64c718300a1d/preview.webp?sv=2025-07-05&se=2025-12-14T15%3A59%3A54Z&sr=b&sp=r&sig=DbD9LUH0miIvv0YyqSF8iFC8pz%2BJVE6mU2dDNMXrM3Y%3D" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #ffffff;" data-img="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/595559690_1543630603449402_423441208594952042_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fmeSJNTh2JgQ7kNvwGLEIL1&_nc_oc=Adk_lrK3w3KUrZzIW6NFXo5w8iURu9cifltbSwiZuPwy6TkkLbGq0uF0oi1hJGf0xrY&_nc_zt=23&_nc_ht=scontent.fhan18-1.fna&_nc_gid=WJLKFPR9ooJvhppOIDVJrg&oh=00_Afm1HGfCfz4Vje3FA0xGZsr8dfeqteqQah-ctXPTO0VKKg&oe=693B80E0" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #DAE2E8;" data-img="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/597119745_1543550756790720_7531319963173113488_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=KKzueA8yBy0Q7kNvwFcRceq&_nc_oc=Adk3tFcXePbDEODb07EBmno5mXHlimc0iyX6p0twK1YVvVFldXe8J8K655hX-eyRlxA&_nc_zt=23&_nc_ht=scontent.fhan18-1.fna&_nc_gid=1tL7GtsCQFTm4IsBLgTknw&oh=00_Afmoe01njQ7nN-YGJKEdsvh-yStSAh44S9NDG8w9Q6XKmA&oe=693B87E7" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #34495E;" data-img="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/593558730_1543552116790584_3792705797266742733_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=140aLvBBE08Q7kNvwFvwTFw&_nc_oc=AdlX09JNnkrzqICByXtxjrxXdLgAx0szgHc8sWGIqOyLciiBtYLdnZ5rHJ_EKeFVQfk&_nc_zt=23&_nc_ht=scontent.fhan18-1.fna&_nc_gid=ktH4A0fkBEa1Mcq7IvN0Xw&oh=00_AfkPFdGR8bh93m1aCoJqHbsg785VaT_48UMtECbXSb4RPg&oe=693B743C" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #0e87ff;" data-img="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/596410254_1543627036783092_761571218958151872_n.jpg?stp=dst-jpg_s590x590_tt6&_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=o7WwK0CP4lMQ7kNvwHB2ZqQ&_nc_oc=AdmVfweyee441SwDiEGQ3DqGnYepRVU8SeGAZuP5NMfPgqNMRSyvV9SZpGEH1REVhrw&_nc_zt=23&_nc_ht=scontent.fhan18-1.fna&_nc_gid=YHhzAk3cNvCxU-9xk60I4Q&oh=00_AfkFdjbnwxY6qdj_ak-UipXlfpffRaJJchlVR2RbVHBmHA&oe=693B96FD" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #000000;" data-img="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/594455104_1543598160119313_2748343225610926390_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=sXvLCj1qa0cQ7kNvwF5HPy8&_nc_oc=AdkSjhhJgq4U-V3AyWfCimolvVgWCisTUKxhkVkQhBJgDmKgjft9m4vpUz7pHr1n2fE&_nc_zt=23&_nc_ht=scontent.fhan18-1.fna&_nc_gid=okL6t6BFJJVczG5IM7aLJA&oh=00_Afmfoq1tlCDd7rj_Kmuf40GJ4DxhTpLSy7imP3CW5ku5yg&oe=693B89AA" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #CBCBCB;" data-img="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/596820974_1543598163452646_7819226226807343379_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=SluMh_pTXqEQ7kNvwEeEKPR&_nc_oc=AdlI_RcIDBWqApXTHwVbMg7wVkfAqoRGruv2ro5XwttHpgIVE2ySpvl37dXoFborvh8&_nc_zt=23&_nc_ht=scontent.fhan18-1.fna&_nc_gid=S9-5GtpwsVOZTFxzS9KYbw&oh=00_AflDLmxmeJ68jGUGLv11tIp33B0scIT9GTcO41OVdviEYQ&oe=693B86F8" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #6B513E;" data-img="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/595911804_1543598140119315_8795047154174552434_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=YP0VhAm_S8cQ7kNvwEbb9LO&_nc_oc=AdkwH9Kx1wc-WaXpbRFF8fqbOls4-J5sJL4cAQ9W2WpGflDTa1qxFSyE0-0580zowBA&_nc_zt=23&_nc_ht=scontent.fhan18-1.fna&_nc_gid=piD75B0c2EgBlNVPkIe-7A&oh=00_Aflq6RGiCY4tTJ8OZzBU0I1L4uJKTPpMNbDc6EIHJdU23g&oe=693B7440" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #d3d3f3;" data-img="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/594566787_1543627040116425_5183760747659794867_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=DEcUVdNkLG4Q7kNvwEF1eaA&_nc_oc=Adkn3uz2dsipzF4INd3ch5lSO1wv-vk4f8L3Ks5ewwQXbljEmgKJv4tK_LjzjSsUgA0&_nc_zt=23&_nc_ht=scontent.fhan18-1.fna&_nc_gid=YYnPK_kVsbRPmMONGihGDw&oh=00_AfmMa8qC6qALJb7Z6ZIrrkBv80zoP5v-T5YvdUycGadLww&oe=693BA852" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #000435;" data-img="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/596812523_1543598043452658_5619328885178130599_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=d0GUB7AIKlIQ7kNvwEaLNeS&_nc_oc=AdlA9t9Cm8e7TbuenUoTjgFkjdsxbOE8D4N-6NssCweQ9CQjBuZjXrkTXT7UloHz8QM&_nc_zt=23&_nc_ht=scontent.fhan18-1.fna&_nc_gid=E4wsHlp1dturD3j8m9OOOQ&oh=00_AfnFQFGOdwF0ZpPjMP2aKBnte9o322TPZu8fcmeKJH9fcQ&oe=693B7A4A" onclick="selectColor(this)"></div>
+            <div class="color-option" style="background-color: #FEE1E8;" data-img="https://scontent.fhan18-1.fna.fbcdn.net/v/t39.30808-6/594953230_1543598050119324_184552749082816017_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=oRWVyPO1GNoQ7kNvwFkKZQJ&_nc_oc=Adn_OHEx60pJx2YR_OBjM4z313YwLzXPUki_wyjR81bidgQhjrAxtB7e8QMZdN2tn1s&_nc_zt=23&_nc_ht=scontent.fhan18-1.fna&_nc_gid=8LlOTQdnsuqG6HuA99Q5AA&oh=00_AfmuGHyWxsPI7AAsI9q4OVaXMVer-dUpfv_oTuWhHcaQ3g&oe=693B82C6" onclick="selectColor(this)"></div>
+        </div>
+
+        <h4>Size</h4>
+        <div id="sizes">
+            <div class="size-option" onclick="selectSize(this)">M (50 - 65kg)</div>
+            <div class="size-option" onclick="selectSize(this)">L (65 - 75kg)</div>
+            <div class="size-option" onclick="selectSize(this)">XL (< 85kg)</div>
+        </div>
+
+        <h4>Điền kí tự (tối đa 10 ký tự)</h4>
+        <input type="text" id="textInput" placeholder="Nhập chữ vào áo..." oninput="updateText()">
+
+        <h4>Chọn icon</h4>
+        <div id="icons">  
+   <div class="icon-option" onclick="selectIcon('icon32')">
+    <img src="https://img.icons8.com/ios-filled/50/ff0000/like.png" alt="Icon 32 - Trái tim đỏ">
+</div>
+
+    <div class="icon-option" onclick="selectIcon('icon2')"><img src="https://img.icons8.com/ios-filled/50/000000/angel.png" alt="Icon 2 màu đỏ"></div>  
+    <div class="icon-option" onclick="selectIcon('icon3')"><img src="https://img.icons8.com/ios-filled/50/000000/christmas-tree.png" alt="Icon 3"></div>  
+    <div class="icon-option" onclick="selectIcon('icon4')"><img src="https://img.icons8.com/ios-filled/50/000000/snowflake.png" alt="Icon 4"></div>  
+    <div class="icon-option" onclick="selectIcon('icon5')"><img src="https://img.icons8.com/ios-filled/50/000000/star.png" alt="Icon 5"></div>  
+    <div class="icon-option" onclick="selectIcon('icon6')"><img src="https://img.icons8.com/ios-filled/50/000000/candy-cane.png" alt="Icon 6"></div>  
+    <div class="icon-option" onclick="selectIcon('icon7')"><img src="https://img.icons8.com/ios-filled/50/000000/present.png" alt="Icon 7"></div>  
+    <div class="icon-option" onclick="selectIcon('icon8')"><img src="https://img.icons8.com/ios-filled/50/000000/beret.png" alt="Icon 8"></div>   
+    <div class="icon-option" onclick="selectIcon('icon10')"><img src="https://img.icons8.com/ios-filled/50/000000/snowman.png" alt="Icon 10"></div>  
+    <div class="icon-option" onclick="selectIcon('icon11')"><img src="https://img.icons8.com/ios-filled/50/000000/25.png" alt="Icon 11"></div>  
+    <div class="icon-option" onclick="selectIcon('icon13')"><img src="https://img.icons8.com/ios-filled/50/000000/gingerbread-man.png" alt="Icon 13"></div>  
+    <div class="icon-option" onclick="selectIcon('icon14')"><img src="https://img.icons8.com/ios-filled/50/000000/reindeer.png" alt="Icon 14"></div>    
+    
+    <div class="icon-option" onclick="selectIcon('icon17')"><img src="https://img.icons8.com/ios-filled/50/000000/pineapple.png" alt="Icon 17"></div>  
+    
+    <div class="icon-option" onclick="selectIcon('icon19')"><img src="https://img.icons8.com/ios-filled/50/000000/cocktail.png" alt="Icon 19"></div>  
+    <div class="icon-option" onclick="selectIcon('icon20')"><img src="https://img.icons8.com/ios-filled/50/000000/sparkler.png" alt="Icon 20"></div>  
+   
+    <div class="icon-option" onclick="selectIcon('icon24')"><img src="https://img.icons8.com/ios-filled/50/000000/party-hat.png" alt="Icon 24"></div>  
+    <div class="icon-option" onclick="selectIcon('icon25')"><img src="https://img.icons8.com/ios-filled/50/000000/firework.png" alt="Icon 25"></div>  
+    <div class="icon-option" onclick="selectIcon('icon26')"><img src="https://img.icons8.com/ios-filled/50/000000/earth-planet.png" alt="Icon 26"></div>  
+    <div class="icon-option" onclick="selectIcon('icon27')"><img src="https://img.icons8.com/ios-filled/50/000000/cactus.png" alt="Icon 27"></div>  
+    <div class="icon-option" onclick="selectIcon('icon28')"><img src="https://img.icons8.com/ios-filled/50/000000/flower.png" alt="Icon 28"></div>  
+    <div class="icon-option" onclick="selectIcon('icon29')"><img src="https://img.icons8.com/ios-filled/50/000000/suitcase.png" alt="Icon 29"></div>  
+    <div class="icon-option" onclick="selectIcon('icon30')"><img src="https://img.icons8.com/ios-filled/50/000000/baby.png" alt="Icon 30"></div>  
+    <div class="icon-option" onclick="selectIcon('icon31')"><img src="https://img.icons8.com/ios-filled/50/000000/cat.png" alt="Icon 31"></div>  
+</div> 
+
+        <h4>Số lượng</h4>
+        <input type="number" value="1" min="1">
+
+        <div class="button-container">
+            <button onclick="purchase()">Mua ngay</button>
+            <button class="add-to-cart" onclick="addToCart()">Thêm vào giỏ hàng</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function selectColor(element) {
+        const colors = document.querySelectorAll('.color-option');
+        colors.forEach(color => color.classList.remove('selected'));
+        element.classList.add('selected');
+
+        const imgSrc = element.getAttribute('data-img');
+        if (imgSrc) {
+            document.getElementById("productImage").src = imgSrc;
+        }
+    }
+
+    function selectSize(element) {
+        const sizes = document.querySelectorAll('.size-option');
+        sizes.forEach(size => size.classList.remove('selected'));
+        element.classList.add('selected');
+    }
+
+    
+function selectIcon(iconId) {
+        const iconOverlay = document.getElementById('iconOverlay');
+        const iconMap = {
+         'icon32': 'https://img.icons8.com/ios-filled/50/ffffff/like.png',   // trái tim trắng
+
+    'icon2': 'https://img.icons8.com/ios-filled/50/ffffff/angel.png',
+    'icon3': 'https://img.icons8.com/ios-filled/50/ffffff/christmas-tree.png',
+    'icon4': 'https://img.icons8.com/ios-filled/50/ffffff/snowflake.png',
+    'icon5': 'https://img.icons8.com/ios-filled/50/ffffff/star.png',
+    'icon6': 'https://img.icons8.com/ios-filled/50/ffffff/candy-cane.png',
+    'icon7': 'https://img.icons8.com/ios-filled/50/ffffff/present.png',
+    'icon8': 'https://img.icons8.com/ios-filled/50/ffffff/beret.png',
+
+    'icon10': 'https://img.icons8.com/ios-filled/50/ffffff/snowman.png',
+    'icon11': 'https://img.icons8.com/ios-filled/50/ffffff/25.png',
+    'icon13': 'https://img.icons8.com/ios-filled/50/ffffff/gingerbread-man.png',
+    'icon14': 'https://img.icons8.com/ios-filled/50/ffffff/reindeer.png',
+
+    'icon17': 'https://img.icons8.com/ios-filled/50/ffffff/pineapple.png',
+    'icon19': 'https://img.icons8.com/ios-filled/50/ffffff/cocktail.png',
+    'icon20': 'https://img.icons8.com/ios-filled/50/ffffff/sparkler.png',
+
+    'icon24': 'https://img.icons8.com/ios-filled/50/ffffff/party-hat.png',
+    'icon25': 'https://img.icons8.com/ios-filled/50/ffffff/firework.png',
+    'icon26': 'https://img.icons8.com/ios-filled/50/ffffff/earth-planet.png',
+    'icon27': 'https://img.icons8.com/ios-filled/50/ffffff/cactus.png',
+    'icon28': 'https://img.icons8.com/ios-filled/50/ffffff/flower.png',
+    'icon29': 'https://img.icons8.com/ios-filled/50/ffffff/suitcase.png',
+    'icon30': 'https://img.icons8.com/ios-filled/50/ffffff/baby.png',
+    'icon31': 'https://img.icons8.com/ios-filled/50/ffffff/cat.png'
+            // Thêm các icon khác tương tự
+        };
+
+    if(iconMap[iconId]){
+        iconOverlay.src = iconMap[iconId];
+        iconOverlay.style.display = 'block';
+        iconOverlay.style.width = '25px';  // kích thước nhỏ
+        iconOverlay.style.top = '42%';     // nâng lên 1 chút
+        iconOverlay.style.left = '20%';    // ngực trái
+    }
+}
+
+
+
+
+    function purchase() {
+        const selectedSize = document.querySelector('.size-option.selected');
+        const selectedColor = document.querySelector('.color-option.selected');
+        const customText = document.getElementById("customText").value;
+        const selectedIcon = document.querySelector('.icon-option img');
+        const quantity = document.querySelector('input[type="number"]').value;
+
+        if (!selectedSize || !selectedColor) {
+            alert('Vui lòng chọn màu và kích thước!');
+            return;
+        }
+
+        alert(`Đặt hàng thành công!\nMàu: ${selectedColor.style.backgroundColor}\nSize: ${selectedSize.textContent}\nKí tự: ${customText}\nIcon: ${selectedIcon ? selectedIcon.src : 'chưa chọn'}\nSố lượng: ${quantity}`);
+    }
+
+    function addToCart() {
+        const selectedSize = document.querySelector('.size-option.selected');
+        const selectedColor = document.querySelector('.color-option.selected');
+        const customText = document.getElementById("customText").value;
+        const selectedIcon = document.querySelector('.icon-option img');
+        const quantity = document.querySelector('input[type="number"]').value;
+
+        if (!selectedSize || !selectedColor) {
+            alert('Vui lòng chọn màu và kích thước!');
+            return;
+        }
+
+        alert(`Thêm vào giỏ hàng thành công!\nMàu: ${selectedColor.style.backgroundColor}\nSize: ${selectedSize.textContent}\nKí tự: ${customText}\nIcon: ${selectedIcon ? selectedIcon.src : 'chưa chọn'}\nSố lượng: ${quantity}`);
+    }
+function updateText() {
+    const text = document.getElementById("textInput").value.slice(0, 10);
+    document.getElementById("shirtText").textContent = text;
+}
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Của Beo</title>
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+    <style>
+
+body {
+  margin: 0;
+  font-family: 'Pacifico', cursive;
+  background: #f9f9f9;
+}
+
+
+
+
+        /* Ô gấp đôi chiều rộng */
+        .big-card {
+            grid-column: span 2 !important;
+        }
+
+        .big-card img {
+            height: 350px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 40px;
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo {
+            font-size: 35px;
+            font-weight: 900;
+            flex: 1;
+        
+    font-size: 35px;
+    font-weight: 900;
+    flex: 1;
+    letter-spacing: 5px; /* ← kéo giãn chữ */
+}
+
+          
+
+        .menu-header a {
+            margin-left: 25px;
+            font-size: 22px;
+            font-weight: 700;
+            text-decoration: none;
+            color: #000;
+            cursor: pointer;
+        }
+
+        /* PRODUCTS GRID */
+        .products {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 12px;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            margin: 12px 0 5px;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        /* POPUP */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .popup-box {
+            width: 380px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            animation: fadeIn 0.25s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .popup-box select,
+        .popup-box button,
+        .popup-box input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: 1px solid #bbb;
+        }
+
+        .add-cart {
+            background: #6f14ac;
+            color: white;
+            font-weight: 700;
+            border: none;
+        }
+
+        .next-btn {
+            background: #444;
+            color: #fff;
+            border: none;
+        }
+
+        /* CART ITEMS */
+        #cart-items li {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #cart-items li button {
+            background: red;
+            color: white;
+            padding: 3px 8px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        footer {
+            padding: 45px 20px;
+            background: #6f14ac;
+            color: #fff;
+            text-align: center;
+            font-size: 30px;
+            font-weight: 900;
+        }
+
+        /* SLIDER */
+        .swiper-slide img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #6f14ac;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOGIN POPUP -->
+    <div id="login-popup" class="popup">
+        <div class="popup-box">
+            <h2>Đăng Nhập</h2>
+            <input type="text" placeholder="Tài khoản">
+            <input type="password" placeholder="Mật khẩu">
+            <div class="login-method">Đăng nhập bằng Facebook</div>
+            <div class="login-method">Đăng nhập bằng Email</div>
+            <button class="next-btn" onclick="closeLogin()">Đóng</button>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">CUSTOM  MANG CÁ TÍNH RIÊNG</div>
+        <div class="menu-header">
+            <a onclick="openCart()">Giỏ hàng (<span id="cart-count">0</span>)</a>
+            <a onclick="openLogin()">Đăng nhập</a>
+        </div>
+    </header>
+
+    <!-- PRODUCT LIST -->
+    <section class="products">
+
+        <div class="card" onclick="window.location.href='tui-vai.html'">
+            <img src="https://i.pinimg.com/736x/12/ae/e6/12aee62cf3c6dd73348ad3e42cf9fbbe.jpg">
+            <h3>TÚI VẢI</h3>
+            <p>Thiết kế theo ý bạn</p>
+        </div>
+
+        <div class="card" onclick="window.location.href='Khan.html'">
+            <img src="https://i.pinimg.com/1200x/17/14/6e/17146eba15fc321f6c8b68ded71ae1ff.jpg">
+            <h3>KHĂN</h3>
+            <p>Thiết kế theo ý bạn</p>
+        </div>
+
+        <div class="card" onclick="window.location.href='tat.html'">
+            <img src="https://i.pinimg.com/736x/38/7e/3b/387e3b5ee33ed964ac5afb89c9b11a81.jpg">
+            <h3>TẤT</h3>
+            <p>Thiết kế theo ý bạn</p>
+        </div>
+
+        <div class="card" onclick="window.location.href='aophong.html'">
+            <img src="https://i.pinimg.com/1200x/4a/65/ed/4a65ed4fa522879764a88fbfab8988c7.jpg">
+            <h3>ÁO</h3>
+            <p>Thiết kế theo ý bạn</p>
+        </div>
+
+        <div class="card" onclick="window.location.href='cocsu.html'">
+            <img src="https://i.pinimg.com/1200x/97/eb/38/97eb3821d1654a8a7618e5d63a8ff915.jpg">
+            <h3>CỐC SỨ</h3>
+            <p>Thiết kế theo ý bạn</p>
+        </div>
+
+        <div class="card" onclick="window.location.href='binhnuoc.html'">
+            <img src="https://i.pinimg.com/1200x/02/a7/96/02a79631bd2f2a59f101efdb369248fc.jpg">
+            <h3>BÌNH NƯỚC</h3>
+            <p>Thiết kế theo ý bạn</p>
+        </div>
+
+        <div class="card" onclick="window.location.href='GOI.html'">
+            <img src="https://i.pinimg.com/1200x/23/6a/90/236a9077b6f561835d7d9ea525562caf.jpg">
+            <h3>GỐI</h3>
+            <p>Thiết kế theo ý bạn</p>
+        </div>
+
+        <div class="card" onclick="window.location.href='opdienthoai.html'">
+            <img src="https://i.pinimg.com/1200x/a6/bb/86/a6bb86fbf40fdf32f86b48804e5b5e8f.jpg">
+            <h3>ỐP ĐIỆN THOẠI</h3>
+            <p>Thiết kế theo ý bạn</p>
+        </div>
+
+        <div class="card big-card" onclick="window.location.href='opdienthoai.html'">
+            <img src="https://i.pinimg.com/736x/0e/7f/dd/0e7fdde33f87482428b46c28722ca913.jpg">
+            <h3>MẪU THIẾT KẾ SẴN</h3>
+            <p>Thiết kế sẵn</p>
+        </div>
+
+    </section>
+
+    <!-- SLIDER -->
+    <footer>Xu Hướng Mới Nhất</footer>
+
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="https://i.pinimg.com/736x/f0/0b/ab/f00bab4f43457218cebe47a470bfbb9d.jpg"></div>
+            <div class="swiper-slide"><img src="https://down-vn.img.susercontent.com/file/sg-11134201-7rd3w-m7erqhl2xe0l6f@resize_w900_nl.webp"></div>
+            <div class="swiper-slide"><img src="https://i.pinimg.com/736x/b9/6e/bc/b96ebc9174ccb2d85cd1ca295a191d54.jpg"></div>
+            <div class="swiper-slide"><img src="https://i.pinimg.com/1200x/e3/ee/d4/e3eed4ca9efe1fff62122741cdf16a42.jpg"></div>
+            <div class="swiper-slide"><img src="https://img.fantaskycdn.com/c564c9a952e842bea3a352ff83c79b9b_2056x.jpeg"></div>
+            <div class="swiper-slide"><img src="https://i.pinimg.com/1200x/07/32/d1/0732d102aafa49da08f8d7337597a62e.jpg"></div>
+        
+            <div class="swiper-slide"><img src="https://i.pinimg.com/736x/b4/99/6d/b4996dc36d1b5be2f4143e75f6b6f348.jpg"></div>
+  <div class="swiper-slide"><img src="https://i.pinimg.com/736x/6b/b8/a5/6bb8a5b9a455492fa855f697e109c9e2.jpg"></div>
+  <div class="swiper-slide"><img src="https://i.pinimg.com/1200x/6d/2d/b6/6d2db6fa4ef5247e611aec029a9cd9d1.jpg"></div>
+  <div class="swiper-slide"><img src="https://i.pinimg.com/736x/6a/e4/02/6ae40200367012d54f0d71f8fc1da77a.jpg"></div>
+  <div class="swiper-slide"><img src="https://i.pinimg.com/1200x/46/09/d9/4609d9e4a807a8d7af9aa9e87d098d08.jpg"></div>
+  <div class="swiper-slide"><img src="https://img.staticdj.com/0fc20bb2e86adc37539b07297c16e9c9_2056x.jpeg"></div>
+</div>
+
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <!-- POPUP SẢN PHẨM -->
+    <div id="product-popup" class="popup">
+        <div class="popup-box">
+            <h2 id="product-title"></h2>
+
+            <select>
+                <option>Chọn Size</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+            </select>
+
+            <select>
+                <option>Chọn Màu</option>
+                <option>Đỏ</option>
+                <option>Đen</option>
+                <option>Trắng</option>
+                <option>Xanh</option>
+            </select>
+
+            <button class="add-cart" onclick="addToCart(document.getElementById('product-title').innerText, 100000)">
+                Thêm vào giỏ hàng
+            </button>
+
+            <button class="next-btn" onclick="closeProduct()">Đóng</button>
+        </div>
+    </div>
+
+    <!-- POPUP CART -->
+    <div id="cart-popup" class="popup">
+        <div class="popup-box">
+            <h2>Giỏ hàng của bạn</h2>
+            <ul id="cart-items" style="list-style:none; padding:0"></ul>
+            <p id="cart-total">Tổng: 0 VNĐ</p>
+            <p id="cart-count-text">Tổng số sản phẩm: 0</p>
+            <button class="add-cart" onclick="checkout()">Thanh toán</button>
+            <button class="next-btn" onclick="closeCart()">Đóng</button>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        // ================= CART =================
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        function openCart() {
+            updateCartUI();
+            document.getElementById("cart-popup").style.display = "flex";
+        }
+
+        function closeCart() {
+            document.getElementById("cart-popup").style.display = "none";
+        }
+
+        function addToCart(name, price = 0) {
+            const index = cart.findIndex(item => item.name === name);
+
+            if (index > -1) {
+                cart[index].quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+            alert("Đã thêm " + name + " vào giỏ hàng!");
+        }
+
+        function updateCartCount() {
+            let count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById("cart-count").innerText = count;
+        }
+
+        function updateCartUI() {
+            const cartItems = document.getElementById("cart-items");
+            const cartTotal = document.getElementById("cart-total");
+            const cartCountText = document.getElementById("cart-count-text");
+
+            cartItems.innerHTML = "";
+            let total = 0;
+            let totalQuantity = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                totalQuantity += item.quantity;
+
+                let li = document.createElement("li");
+                li.innerHTML = `${item.name} x ${item.quantity} 
+                    <button onclick="removeFromCart(${index})">Xóa</button>`;
+                cartItems.appendChild(li);
+            });
+
+            cartTotal.innerText = `Tổng tiền: ${total} VNĐ`;
+            cartCountText.innerText = `Tổng số sản phẩm: ${totalQuantity}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartUI();
+            updateCartCount();
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Giỏ hàng trống!");
+                return;
+            }
+
+            let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+            alert(
+                `Thanh toán thành công!\nTổng số sản phẩm: ${cart.reduce((s, i) => s + i.quantity, 0)}\nTổng tiền: ${total} VNĐ`
+            );
+
+            cart = [];
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartUI();
+            updateCartCount();
+        }
+
+        updateCartCount();
+
+        // ================= LOGIN =================
+        function openLogin() {
+            document.getElementById("login-popup").style.display = "flex";
+        }
+
+        function closeLogin() {
+            document.getElementById("login-popup").style.display = "none";
+        }
+
+        // ================= PRODUCT POPUP =================
+        function openProduct(name) {
+            document.getElementById("product-title").innerText = name;
+            document.getElementById("product-popup").style.display = "flex";
+        }
+
+        function closeProduct() {
+            document.getElementById("product-popup").style.display = "none";
+        }
+
+        window.onclick = function (e) {
+            if (e.target.classList.contains("popup")) e.target.style.display = "none";
+        };
+
+        // ================= SWIPER SLIDER =================
+        const swiper = new Swiper(".mySwiper", {
+            slidesPerView: 6,
+            slidesPerGroup: 6,
+            spaceBetween: 10,
+            loop: false,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            }
+        });
+    </script>
+
+</body>
+
+</html>
